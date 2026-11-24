@@ -83,7 +83,7 @@ thead th.us{color:#fff;background:var(--leaf)}
 tbody tr:last-child td{border-bottom:0}
 td.c{text-align:center;font-weight:800}
 td.us{background:#F0F9F3}
-.yes{color:var(--leaf)} .no{color:#C0C9C2}
+.yes{color:var(--leaf)} .no{color:#7A8C7E;font-weight:700}
 .row-ph td{background:#FAF4FE}
 .row-ph td.us{background:#F0F9F3}
 .row-ph th{font-weight:800}
@@ -163,9 +163,30 @@ caption{caption-side:bottom;text-align:left;padding:12px 16px;font-size:.82rem;c
 
 footer{max-width:1080px;margin:0 auto;padding-block:40px 64px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:.85rem;color:var(--muted)}
 
+/* header de navegación */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(242,246,241,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin:0 -20px 10px;padding:0 20px}
+.site-header-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.site-logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:700;font-size:1.35rem}
+.logo-emoji{font-size:1.4rem;line-height:1}
+.logo-badge{font-family:var(--mono);font-size:.65rem;letter-spacing:.05em;background:var(--leaf-soft);color:var(--leaf-deep);padding:2px 6px;border-radius:6px;font-weight:700}
+.site-nav{display:flex;align-items:center;gap:20px}
+.site-nav a{text-decoration:none;color:var(--soft);font-size:.92rem;font-weight:700;transition:color .15s}
+.site-nav a:hover{color:var(--leaf)}
+.site-actions{display:flex;align-items:center;gap:10px}
+.btn-header-ingreso{border-color:transparent;background:transparent}
+.btn-header-ingreso:hover{border-color:var(--line);background:var(--surface)}
+.header-demo-form{margin:0}
+
+/* mejoras de modelo y tabla */
+.model-tag{align-self:flex-start;font-family:var(--mono);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--leaf-soft);color:var(--leaf-deep);letter-spacing:.04em;text-transform:uppercase}
+.table-note{font-size:.85rem;color:var(--soft);margin:12px 0 0;line-height:1.4}
+
 @media (max-width:860px){
-  .hero{grid-template-columns:1fr;gap:28px;padding-block:52px 40px}
-  .hero-art{order:-1}
+  .site-nav{display:none}
+  .btn-header-ingreso{display:none}
+  .hero{grid-template-columns:1fr;gap:28px;padding-block:32px 36px}
+  .hero-art{order:2;max-width:280px;margin:0 auto}
+  .hero-text{order:1}
   .band{padding:32px 22px;border-radius:24px}
   .cta{grid-template-columns:1fr;padding:36px 22px;border-radius:24px;gap:28px}
   .cta-art{order:-1}

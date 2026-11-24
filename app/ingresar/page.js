@@ -11,17 +11,19 @@ export default async function Ingresar() {
   if (await usuarioActual()) redirect('/plantas');
 
   return (
-    <main className="auth">
-      <div className="auth-head">
-        <Link href="/" className="volver" aria-label="Volver al inicio">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 5l-7 7 7 7" />
-          </svg>
-        </Link>
-        <h1>Hola de nuevo</h1>
+    <main className="auth auth-ancha">
+      <div className="auth-box">
+        <div className="auth-head">
+          <Link href="/" className="volver" aria-label="Volver al inicio">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 5l-7 7 7 7" />
+            </svg>
+          </Link>
+          <h1>Hola de nuevo</h1>
+        </div>
+        <p className="auth-sub">Entra para ver cómo están tus plantas.</p>
+        <FormIngreso />
       </div>
-      <p className="auth-sub">Entra para ver cómo están tus plantas.</p>
-      <FormIngreso />
 
       <div className="demo-seccion">
         <div className="demo-seccion-head">
@@ -33,7 +35,7 @@ export default async function Ingresar() {
           </p>
         </div>
 
-        <div className="demo-grid">
+        <div className="cuentas-demo-grid">
           {CUENTAS_DEMO.map((c) => (
             <div key={c.tipo} className="demo-tarjeta">
               <div className="demo-tarjeta-top">
@@ -47,12 +49,12 @@ export default async function Ingresar() {
               <p className="demo-historia">{c.historia}</p>
 
               <div className="demo-meta">
-                <div>
-                  <small>Planta</small>
-                  <b>{c.planta}</b>
+                <div className="demo-meta-row">
+                  <span className="demo-meta-label">Planta</span>
+                  <b className="demo-meta-value">{c.planta}</b>
                 </div>
-                <div>
-                  <small>Enfoque</small>
+                <div className="demo-meta-row">
+                  <span className="demo-meta-label">Enfoque</span>
                   <span className="demo-tag">{c.destacado}</span>
                 </div>
               </div>

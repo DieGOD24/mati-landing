@@ -209,7 +209,7 @@ export default function MateraDemo({ usuarioId, matera }) {
         </div>
       </div>
 
-      <div className="demo-grid">
+      <div className="matera-dashboard-grid">
         {/* Estado general (mockups 11 y 12) */}
         <section className="tarjeta detalle">
           <div className="detalle-top">
@@ -282,7 +282,7 @@ export default function MateraDemo({ usuarioId, matera }) {
             <div className={`tanque${restantes < 2 ? ' fuera' : ''}`}>
               <span>Tanque</span>
               <b>{num(e.tanque)} %</b>
-              <small>{restantes < 1 ? 'Vacío' : `${restantes} riegos`}</small>
+              <small>{restantes < 1 ? 'Vacío' : `${restantes} ${restantes === 1 ? 'riego' : 'riegos'}`}</small>
             </div>
           </div>
           {exceso && <small className="nota-riego">No hace falta regar: la tierra tiene demasiada agua.</small>}

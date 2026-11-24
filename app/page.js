@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import Cara from '../components/Cara';
+import Header from '../components/Header';
 import Matera from '../components/Matera';
 import { entrarDemo } from './acciones';
 import {
@@ -17,6 +19,7 @@ import {
 export default function Home() {
   return (
     <>
+      <Header />
       <section className="hero">
         <div className="hero-text">
           <span className="eyebrow">Proyecto de Emprendimiento · UTP</span>
@@ -36,9 +39,9 @@ export default function Home() {
             <a className="btn btn-main" href={app.registro}>
               Crear mi cuenta
             </a>
-            <form action={entrarDemo}>
-              <button className="btn btn-ghost">Probar la demo</button>
-            </form>
+            <Link className="btn btn-ghost" href="/ingresar">
+              Probar la demo →
+            </Link>
           </div>
         </div>
         <div className="hero-art">
@@ -46,7 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="block">
+      <section className="block" id="problema">
         <div className="head">
           <span className="eyebrow">El problema</span>
           <h2>Una planta no avisa hasta que ya es tarde</h2>
@@ -78,7 +81,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="block">
+      <section className="block" id="caras">
         <div className="band">
           <div className="head head-flat">
             <span className="eyebrow">La cara</span>
@@ -152,21 +155,22 @@ export default function Home() {
                 </tr>
               ))}
             </tbody>
-            <caption>
-              Comparación con los productos del mercado. La columna del pH es la que nadie más llena.
-            </caption>
           </table>
         </div>
+        <p className="table-note">
+          Comparación con los productos del mercado internacional. La medición de pH del suelo y el lenguaje visual emotivo son ventajas exclusivas de Mati.
+        </p>
       </section>
 
-      <section className="block">
+      <section className="block" id="modelo">
         <div className="head">
-          <span className="eyebrow">El modelo</span>
-          <h2>Se paga una vez y ya</h2>
+          <span className="eyebrow">El modelo de negocio</span>
+          <h2>Se paga una vez y ya · Transparente y accesible</h2>
         </div>
         <div className="model">
           {modelo.map((m) => (
             <div key={m.titulo}>
+              {m.etiqueta && <span className="model-tag">{m.etiqueta}</span>}
               <h3>{m.titulo}</h3>
               <p>{m.texto}</p>
             </div>
@@ -231,7 +235,7 @@ export default function Home() {
 
       <footer>
         <span>Mati · Proyecto de la clase de Emprendimiento · Universidad Tecnológica de Pereira</span>
-        <span>2026 · Prototipo académico, no es un producto en venta</span>
+        <span>2026 · Prototipo para Demo Day</span>
       </footer>
     </>
   );
