@@ -170,7 +170,7 @@ button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
 /* barra superior en vista demo */
 .demo-barra-superior{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 18px;margin-bottom:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .demo-barra-info{display:flex;align-items:center;gap:12px}
-.demo-barra-icono{font-size:1.4rem;width:40px;height:40px;border-radius:12px;background:var(--leaf-soft);display:flex;align-items:center;justify-content:center;line-height:1;overflow:hidden;flex:none}
+.demo-barra-icono{font-size:1.45rem;width:42px;height:42px;border-radius:12px;background:var(--leaf-soft);display:grid;place-items:center;line-height:1;flex:none}
 .demo-barra-info b{display:block;font-size:.95rem;color:var(--ink)}
 .demo-barra-info span{display:block;font-size:.8rem;color:var(--soft)}
 .demo-barra-cambio{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
