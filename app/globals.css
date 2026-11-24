@@ -24,11 +24,13 @@ section{max-width:1080px;margin:0 auto}
 .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--leaf)}
 
 /* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:72px 64px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:64px 56px}
 .hero-text{display:flex;flex-direction:column;gap:20px}
 .hero h1 em{font-style:normal;color:var(--leaf)}
-.hero .sub{font-size:1.2rem;color:var(--soft)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.hero .sub{font-size:1.15rem;color:var(--soft);line-height:1.6}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.hero-proof{display:flex;flex-wrap:wrap;gap:10px 14px;font-size:.82rem;font-weight:700;color:var(--soft);margin-top:6px}
+.hero-proof span{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.75);padding:4px 10px;border-radius:8px;border:1px solid var(--line)}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 24px;border-radius:16px;font-weight:800;font-size:1rem;text-decoration:none}
 .btn-main{background:var(--leaf);color:#fff}
 .btn-main:hover{background:var(--leaf-deep)}
@@ -36,6 +38,64 @@ section{max-width:1080px;margin:0 auto}
 .btn-ghost{transition:background .15s,border-color .15s}
 .btn-ghost:hover{border-color:var(--leaf);color:var(--leaf-deep);background:#F2FAF5}
 .hero-art{display:flex;justify-content:center}
+
+/* tarjeta interactiva del hero */
+.hero-interactive-card{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;padding:22px 20px;display:flex;flex-direction:column;gap:16px;box-shadow:0 16px 40px rgba(22,36,27,.07);width:100%;max-width:390px}
+.hero-speech-bubble{background:var(--ground);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--ink);font-weight:600;min-height:54px;line-height:1.35;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.speech-icon{font-size:1.2rem;flex:none}
+.hero-pot-canvas{position:relative;display:flex;justify-content:center;align-items:center;padding:4px 0}
+.pot-svg{display:block;max-width:240px;height:auto}
+.leaf-anim{transform-origin:150px 110px;animation:bamboleo 4s ease-in-out infinite}
+.leaf-anim-alt{transform-origin:150px 114px;animation:bamboleo 3.2s ease-in-out infinite reverse}
+@keyframes bamboleo{0%,100%{transform:rotate(0deg)}50%{transform:rotate(2.5deg)}}
+.pot-watering .pot-svg{animation:salto-riego .4s ease-in-out 3}
+@keyframes salto-riego{50%{transform:translateY(-6px)}}
+.pot-face-overlay{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-state-badge{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.03em;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.badge-ok{background:var(--leaf-soft);color:var(--leaf-deep)}
+.badge-warn{background:var(--warn-soft);color:var(--warn)}
+.badge-ph{background:var(--ph-soft);color:var(--ph)}
+.badge-sun{background:var(--sun-soft);color:#8A6508}
+.badge-water{background:var(--water-soft);color:var(--water)}
+
+/* mini barras HUD */
+.hero-vitals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:var(--ground);padding:10px 12px;border-radius:16px}
+.vital-item{display:flex;flex-direction:column;gap:4px}
+.vital-label{display:flex;justify-content:space-between;align-items:center;font-size:.72rem}
+.vital-label span{color:var(--muted);font-weight:700}
+.vital-label b{font-family:var(--display);color:var(--ink);font-size:.82rem}
+.vital-bar{height:6px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden}
+.vital-fill{height:100%;border-radius:3px;transition:width .4s ease,background .3s}
+.fill-water{background:var(--water)}
+.fill-ph{background:var(--ph)}
+.fill-sun{background:var(--sun)}
+.fill-low{background:var(--warn)}
+.fill-warn{background:var(--warn)}
+
+/* controles de simulador hero */
+.hero-sim-controls{display:flex;flex-direction:column;gap:8px}
+.controls-title{font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.controls-pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill-btn{border:1px solid var(--line);background:var(--ground);color:var(--ink);font:inherit;font-size:.78rem;font-weight:700;padding:5px 9px;border-radius:10px;cursor:pointer;transition:all .15s}
+.pill-btn:hover{border-color:var(--leaf);background:var(--surface)}
+.pill-btn.pill-active{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill-btn.pill-water{background:var(--water-soft);border-color:rgba(43,120,176,.3);color:var(--water)}
+.pill-btn.pill-water.pill-active{background:var(--water);border-color:var(--water);color:#fff}
+
+/* estadísticas de validación */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.stat-card{background:var(--surface);border-radius:20px;padding:26px 22px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);box-shadow:0 6px 18px rgba(0,0,0,.03);transition:transform .2s}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--leaf)}
+.stat-card b{font-family:var(--display);font-size:2.4rem;color:var(--leaf);line-height:1}
+.stat-card span{font-size:.9rem;color:var(--soft);line-height:1.4}
+
+/* preguntas frecuentes */
+.faq-list{display:flex;flex-direction:column;gap:12px;max-width:820px}
+.faq-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .15s}
+.faq-card.faq-open{border-color:var(--leaf);box-shadow:0 6px 20px rgba(0,0,0,.04)}
+.faq-question-btn{width:100%;text-align:left;background:none;border:0;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;cursor:pointer;font:inherit;font-weight:800;font-size:1.05rem;color:var(--ink)}
+.faq-icon{font-family:var(--mono);font-size:1.3rem;color:var(--leaf);flex:none;line-height:1}
+.faq-answer{padding:0 22px 20px;font-size:.95rem;color:var(--soft);line-height:1.55;border-top:1px dashed var(--sunken);padding-top:14px}
 
 /* bloques */
 .band{background:var(--surface);border-radius:28px;padding:44px 36px;display:flex;flex-direction:column;gap:28px}

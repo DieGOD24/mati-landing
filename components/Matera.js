@@ -20,8 +20,10 @@ export default function Matera({ size = 330 }) {
       <path d="M129 220 q21 19 42 0" fill="none" stroke="#BFF2D3" strokeWidth="4.2" strokeLinecap="round" />
       <circle cx="118" cy="222" r="5" fill="#F29BB0" opacity="0.5" />
       <circle cx="182" cy="222" r="5" fill="#F29BB0" opacity="0.5" />
-      <line x1="90" y1="300" x2="90" y2="326" stroke="#8A7A66" strokeWidth="3" />
-      <line x1="110" y1="300" x2="110" y2="326" stroke="#8A7A66" strokeWidth="3" />
+      {/* Patas de madera estilo nórdico */}
+      <line x1="85" y1="316" x2="72" y2="336" stroke="#A89078" strokeWidth="7" strokeLinecap="round" />
+      <line x1="150" y1="318" x2="150" y2="338" stroke="#8F7862" strokeWidth="7" strokeLinecap="round" />
+      <line x1="215" y1="316" x2="228" y2="336" stroke="#A89078" strokeWidth="7" strokeLinecap="round" />
     </svg>
   );
 }

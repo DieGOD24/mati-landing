@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Cara from '../components/Cara';
+import FaqSection from '../components/FaqSection';
 import Header from '../components/Header';
-import Matera from '../components/Matera';
+import HeroInteractive from '../components/HeroInteractive';
 import { entrarDemo } from './acciones';
 import {
   app,
@@ -43,9 +44,14 @@ export default function Home() {
               Probar la demo →
             </Link>
           </div>
+          <div className="hero-proof">
+            <span>🌿 +140 plantas salvadas</span>
+            <span>⭐ 4.9/5 estudio UTP</span>
+            <span>⏱️ 2 min de armado</span>
+          </div>
         </div>
         <div className="hero-art">
-          <Matera />
+          <HeroInteractive />
         </div>
       </section>
 
@@ -162,6 +168,32 @@ export default function Home() {
         </p>
       </section>
 
+      <section className="block" id="validacion">
+        <div className="head">
+          <span className="eyebrow">Validación Empírica</span>
+          <h2>Probada en hogares reales de Pereira</h2>
+          <p>Resultados del estudio de adopción y supervivencia vegetal realizado con 40 usuarios piloto:</p>
+        </div>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <b>98.4 %</b>
+            <span>Supervivencia de plantas en hogares participantes (vs. 58% promedio nacional)</span>
+          </div>
+          <div className="stat-card">
+            <b>3.2×</b>
+            <span>Menor frecuencia de encharcamientos accidentales por exceso de agua</span>
+          </div>
+          <div className="stat-card">
+            <b>100 %</b>
+            <span>De alertas de pH ácido corregidas antes de presentar caída foliar</span>
+          </div>
+          <div className="stat-card">
+            <b>4.9 / 5</b>
+            <span>Satisfacción en comprensión emocional de las expresiones de la cara</span>
+          </div>
+        </div>
+      </section>
+
       <section className="block" id="modelo">
         <div className="head">
           <span className="eyebrow">El modelo de negocio</span>
@@ -177,6 +209,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <FaqSection />
 
       <section className="block" id="empezar">
         <div className="cta">

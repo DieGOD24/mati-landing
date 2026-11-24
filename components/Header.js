@@ -16,7 +16,9 @@ export default function Header() {
           <a href="#como">Cómo funciona</a>
           <a href="#caras">La cara</a>
           <a href="#diferencia">Comparativa</a>
+          <a href="#validacion">Validación</a>
           <a href="#modelo">Modelo</a>
+          <a href="#faq">Preguntas</a>
         </nav>
 
         <div className="site-actions">

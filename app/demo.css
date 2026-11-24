@@ -180,6 +180,33 @@ button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
 .btn-switcher:hover{border-color:var(--leaf);color:var(--leaf-deep)}
 .btn-switcher.activo{background:var(--leaf);border-color:var(--leaf);color:#fff}
 
+/* botón de sonido */
+.btn-sound-toggle{border:1px solid var(--line);background:var(--surface);color:var(--soft);font:inherit;font-size:.78rem;font-weight:700;padding:6px 12px;border-radius:10px;cursor:pointer;transition:all .15s}
+.btn-sound-toggle:hover{border-color:var(--leaf);color:var(--leaf-deep)}
+.btn-sound-toggle.activo{background:var(--leaf-soft);border-color:var(--leaf);color:var(--leaf-deep)}
+
+/* tooltip de medida botánica */
+.medida-tooltip{display:block;font-size:.7rem;color:var(--muted);line-height:1.3;margin-top:2px}
+
+/* ficha botánica de la especie */
+.ficha-botanica-card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px 24px;box-shadow:0 4px 16px rgba(0,0,0,.03);transition:border-color .2s}
+.ficha-botanica-card:hover{border-color:var(--leaf)}
+.ficha-header{display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;user-select:none}
+.ficha-title-block{display:flex;align-items:center;gap:14px}
+.ficha-icono{font-size:1.8rem;width:44px;height:44px;border-radius:14px;background:var(--leaf-soft);display:grid;place-items:center;flex:none}
+.ficha-title-block h3{font-size:1.15rem;margin:2px 0 0}
+.ficha-title-block h3 small{font-weight:600;font-size:.85rem;color:var(--muted)}
+.ficha-action{display:flex;align-items:center;gap:12px}
+.ficha-badge{font-family:var(--mono);font-size:.72rem;font-weight:700;background:var(--ground);color:var(--soft);padding:4px 10px;border-radius:8px}
+.ficha-chevron{font-size:.82rem;font-weight:800;color:var(--leaf)}
+.ficha-body{margin-top:18px;border-top:1px solid var(--line);padding-top:18px}
+.ficha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.ficha-item{display:flex;flex-direction:column;gap:4px;background:var(--ground);padding:14px;border-radius:14px}
+.ficha-destacado{background:var(--leaf-soft);border:1px solid rgba(46,138,87,.2)}
+.ficha-label{font-size:.75rem;font-weight:800;color:var(--leaf-deep);text-transform:uppercase;letter-spacing:.03em}
+.ficha-item p{font-size:.88rem;color:var(--soft);margin:0;line-height:1.45}
+.ficha-destacado p{color:var(--ink);font-weight:600}
+
 @media (max-width:860px){
   .matera-dashboard-grid{grid-template-columns:1fr}
   .cuentas-demo-grid{grid-template-columns:1fr}

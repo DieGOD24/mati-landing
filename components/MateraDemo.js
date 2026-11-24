@@ -5,6 +5,15 @@
 // demo tiene su propia planta y nadie le cambia la de otro.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Cara from './Cara';
+import FichaBotanica from './FichaBotanica';
+import {
+  playSonidoFeliz,
+  playSonidoRiego,
+  playSonidoAlerta,
+  playSonidoClick,
+  toggleSonido,
+  estaSonidoHabilitado
+} from '../lib/audio';
 import {
   AGUA_POR_RIEGO,
   REQUERIMIENTOS,
@@ -119,10 +128,27 @@ export default function MateraDemo({ usuarioId, matera }) {
   const activas = sim.alertas.filter((a) => a.activa);
   const noVistas = activas.filter((a) => !a.vista).length;
 
-  const regar = () => cambiar((s) => iniciarRiego(s, 'manual', Date.now()));
-  const detener = () => cambiar((s) => terminarRiego(s, Date.now()));
-  const escenario = (nombre) => cambiar((s) => aplicarEscenario(s, nombre));
-  const ajustar = (cambios) => cambiar((s) => configurar(s, cambios));
+  const [sonidoActivo, setSonidoActivo] = useState(true);
+  useEffect(() => {
+    setSonidoActivo(estaSonidoHabilitado());
+  }, []);
+
+  const regar = () => {
+    playSonidoRiego();
+    cambiar((s) => iniciarRiego(s, 'manual', Date.now()));
+  };
+  const detener = () => {
+    playSonidoClick();
+    cambiar((s) => terminarRiego(s, Date.now()));
+  };
+  const escenario = (nombre) => {
+    playSonidoAlerta();
+    cambiar((s) => aplicarEscenario(s, nombre));
+  };
+  const ajustar = (cambios) => {
+    playSonidoClick();
+    cambiar((s) => configurar(s, cambios));
+  };
   const reiniciar = () => {
     if (confirm('¿Reiniciar la planta demo? Se borran el historial y las alertas.')) {
       acumulado.current = 0;
@@ -132,6 +158,7 @@ export default function MateraDemo({ usuarioId, matera }) {
 
   const nombre = matera.nombre;
   const accionAlerta = (a) => {
+    playSonidoFeliz();
     if (a.accion === 'regar') {
       regar();
       avisar(`Bomba encendida: regando a ${nombre} ${config.segundos} s.`);
@@ -157,6 +184,7 @@ export default function MateraDemo({ usuarioId, matera }) {
       nombre: 'Humedad',
       valor: `${num(e.humedad)} %`,
       ideal: `Ideal ${config.umbral}–${perfil.humedad[1]} %`,
+      desc: 'Sensor capacitivo radicular: previene pudrición por sobrerriego.',
       fuera: e.humedad < config.umbral || e.humedad > perfil.humedadExceso,
       barra: e.humedad / 100,
       banda: [config.umbral / 100, perfil.humedad[1] / 100]
@@ -166,6 +194,7 @@ export default function MateraDemo({ usuarioId, matera }) {
       nombre: 'pH del suelo',
       valor: num(e.ph, 1),
       ideal: `Ideal ${num(perfil.ph[0], 1)}–${num(perfil.ph[1], 1)}`,
+      desc: 'Sonda botánica patentada: regula la fijación química de nutrientes.',
       fuera: e.ph < perfil.ph[0] || e.ph > perfil.ph[1],
       barra: (e.ph - 4) / 4,
       banda: [(perfil.ph[0] - 4) / 4, (perfil.ph[1] - 4) / 4]
@@ -177,6 +206,7 @@ export default function MateraDemo({ usuarioId, matera }) {
       ideal: enSitioNuevo(e)
         ? 'Sitio nuevo: midiendo su luz durante un día'
         : `Buena luz hoy: ${horasTexto(e.luzHoy)} de ${perfil.horasLuz} h`,
+      desc: 'Fotómetro calibrado: controla fotosíntesis diaria acumulada.',
       fuera: faltaLuz(e, perfil),
       barra: Math.min(1, e.lux / 12000),
       banda: [perfil.luz[0] / 12000, Math.min(1, perfil.luz[1] / 12000)]
@@ -207,6 +237,18 @@ export default function MateraDemo({ usuarioId, matera }) {
             </button>
           ))}
         </div>
+        <button
+          type="button"
+          className={`btn-sound-toggle ${sonidoActivo ? 'activo' : ''}`}
+          onClick={() => {
+            const nuevo = toggleSonido();
+            setSonidoActivo(nuevo);
+            if (nuevo) playSonidoFeliz();
+          }}
+          title="Efectos de sonido Tamagotchi"
+        >
+          {sonidoActivo ? '🔊 Sonido' : '🔇 Silencio'}
+        </button>
       </div>
 
       <div className="matera-dashboard-grid">
@@ -243,6 +285,7 @@ export default function MateraDemo({ usuarioId, matera }) {
                   <span className="punto" style={{ left: `${Math.min(1, Math.max(0, m.barra)) * 100}%` }} />
                 </div>
                 <small>{m.ideal}</small>
+                <span className="medida-tooltip" title={m.desc}>{m.desc}</span>
               </div>
             ))}
           </div>
@@ -397,6 +440,9 @@ export default function MateraDemo({ usuarioId, matera }) {
           </small>
         </section>
       </div>
+
+      {/* Ficha técnica y guía botánica de la especie */}
+      <FichaBotanica especie={matera.especie} />
 
       {/* Panel de pruebas */}
       <section className="tarjeta pruebas">
