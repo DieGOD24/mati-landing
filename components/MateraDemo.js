@@ -71,8 +71,13 @@ export default function MateraDemo({ usuarioId, matera }) {
   const [velocidad, setVelocidad] = useState(1);
   const [ahora, setAhora] = useState(0);
   const [aviso, setAviso] = useState(null);
+  const [sonidoActivo, setSonidoActivo] = useState(true);
   const acumulado = useRef(0);
   const temporizadorAviso = useRef(null);
+
+  useEffect(() => {
+    setSonidoActivo(estaSonidoHabilitado());
+  }, []);
 
   // Confirmación breve de lo que acaba de hacer la persona.
   const avisar = useCallback((texto) => {
@@ -127,11 +132,6 @@ export default function MateraDemo({ usuarioId, matera }) {
   const exceso = sim.cara === 'ahogada';
   const activas = sim.alertas.filter((a) => a.activa);
   const noVistas = activas.filter((a) => !a.vista).length;
-
-  const [sonidoActivo, setSonidoActivo] = useState(true);
-  useEffect(() => {
-    setSonidoActivo(estaSonidoHabilitado());
-  }, []);
 
   const regar = () => {
     playSonidoRiego();

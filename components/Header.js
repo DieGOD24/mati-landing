@@ -12,12 +12,9 @@ export default function Header() {
         </Link>
 
         <nav className="site-nav" aria-label="Navegación principal">
-          <a href="#problema">El problema</a>
           <a href="#como">Cómo funciona</a>
-          <a href="#caras">La cara</a>
           <a href="#diferencia">Comparativa</a>
           <a href="#validacion">Validación</a>
-          <a href="#modelo">Modelo</a>
           <a href="#faq">Preguntas</a>
         </nav>
 
