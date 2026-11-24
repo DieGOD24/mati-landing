@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import MateraDemo from '../../components/MateraDemo';
+import { CUENTAS_DEMO } from '../../lib/contenido';
 import { usuarioActual } from '../../lib/sesion';
-import { agregarMatera, salir } from '../acciones';
+import { agregarMatera, entrarDemo, salir } from '../acciones';
 
 export const metadata = { title: 'Tus plantas · Mati' };
 
@@ -11,9 +12,40 @@ export default async function Plantas() {
 
   const primerNombre = usuario.nombre.split(' ')[0];
   const matera = usuario.materas?.[0];
+  const cuentaDemo = usuario.demo && CUENTAS_DEMO.find((c) => c.correo === usuario.correo || c.tipo === usuario.tipo);
 
   return (
     <main className={`app${matera ? ' app-ancha' : ''}`}>
+      {usuario.demo && (
+        <aside className="demo-barra-superior">
+          <div className="demo-barra-info">
+            <span className="demo-barra-icono">{cuentaDemo?.icono || '🌱'}</span>
+            <div>
+              <b>Modo Demo: {usuario.nombre}</b>
+              <span>{cuentaDemo?.rol || 'Simulación interactiva'}</span>
+            </div>
+          </div>
+
+          <div className="demo-barra-cambio">
+            <span className="demo-barra-label">Cambiar consumidor:</span>
+            <div className="demo-barra-botones">
+              {CUENTAS_DEMO.map((c) => (
+                <form key={c.tipo} action={entrarDemo}>
+                  <input type="hidden" name="tipo" value={c.tipo} />
+                  <button
+                    type="submit"
+                    className={`btn-switcher ${cuentaDemo?.tipo === c.tipo ? 'activo' : ''}`}
+                    title={`${c.rol}: ${c.planta}`}
+                  >
+                    <span>{c.icono}</span> {c.nombre.split(' ')[0]}
+                  </button>
+                </form>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )}
+
       <header className="app-head">
         <div>
           <span className="eyebrow">Hola, {primerNombre}</span>

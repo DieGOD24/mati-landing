@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import FormIngreso from '../../components/FormIngreso';
-import { DEMO } from '../../lib/contenido';
+import { CUENTAS_DEMO, DEMO } from '../../lib/contenido';
 import { usuarioActual } from '../../lib/sesion';
 import { entrarDemo } from '../acciones';
 
@@ -22,20 +22,55 @@ export default async function Ingresar() {
       </div>
       <p className="auth-sub">Entra para ver cómo están tus plantas.</p>
       <FormIngreso />
-      <div className="demo-caja">
-        <b>¿Vienes a probar la demo?</b>
-        <p>
-          Usa la cuenta demo, que tiene una matera simulada lista para interactuar:
-        </p>
-        <dl>
-          <dt>Correo</dt>
-          <dd>{DEMO.correo}</dd>
-          <dt>Contraseña</dt>
-          <dd>{DEMO.contrasena}</dd>
-        </dl>
-        <form action={entrarDemo}>
-          <button className="btn btn-ghost btn-block">Entrar a la demo</button>
-        </form>
+
+      <div className="demo-seccion">
+        <div className="demo-seccion-head">
+          <span className="eyebrow">Demo Day · Simulaciones</span>
+          <h2>Cuentas demo por perfil de consumidor</h2>
+          <p>
+            Elige un perfil para ver cómo la matera y la app se adaptan a las necesidades
+            de cada segmento de clientes:
+          </p>
+        </div>
+
+        <div className="demo-grid">
+          {CUENTAS_DEMO.map((c) => (
+            <div key={c.tipo} className="demo-tarjeta">
+              <div className="demo-tarjeta-top">
+                <span className="demo-icono">{c.icono}</span>
+                <div>
+                  <span className="demo-rol">{c.rol}</span>
+                  <h3>{c.nombre}</h3>
+                </div>
+              </div>
+
+              <p className="demo-historia">{c.historia}</p>
+
+              <div className="demo-meta">
+                <div>
+                  <small>Planta</small>
+                  <b>{c.planta}</b>
+                </div>
+                <div>
+                  <small>Enfoque</small>
+                  <span className="demo-tag">{c.destacado}</span>
+                </div>
+              </div>
+
+              <div className="demo-credenciales">
+                <span>{c.correo}</span>
+                <code>{c.contrasena}</code>
+              </div>
+
+              <form action={entrarDemo}>
+                <input type="hidden" name="tipo" value={c.tipo} />
+                <button type="submit" className="btn btn-main btn-block btn-sm">
+                  Probar como {c.nombre.split(' ')[0]} →
+                </button>
+              </form>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );

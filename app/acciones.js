@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { DEMO } from '../lib/contenido';
+import { CUENTAS_DEMO, DEMO } from '../lib/contenido';
 import {
   DURACION_SESION,
   agregarMateraDemo,
@@ -68,9 +68,16 @@ export async function salir() {
   redirect('/');
 }
 
-// Entra con un clic a la cuenta demo.
-export async function entrarDemo() {
-  const r = await iniciarSesion({ correo: DEMO.correo, contrasena: DEMO.contrasena });
+// Entra con un clic a una de las cuentas demo (por perfil de consumidor o predeterminada).
+export async function entrarDemo(formOtipo) {
+  let tipo;
+  if (typeof formOtipo === 'string') {
+    tipo = formOtipo;
+  } else if (formOtipo?.get) {
+    tipo = formOtipo.get('tipo');
+  }
+  const cuenta = (tipo && CUENTAS_DEMO.find((c) => c.tipo === tipo)) || CUENTAS_DEMO[0] || DEMO;
+  const r = await iniciarSesion({ correo: cuenta.correo, contrasena: cuenta.contrasena });
   if (r.token) await abrirSesion(r.token);
   redirect('/plantas');
 }
