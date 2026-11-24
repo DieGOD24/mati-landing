@@ -170,7 +170,7 @@ button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
 /* barra superior en vista demo */
 .demo-barra-superior{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px 18px;margin-bottom:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px}
 .demo-barra-info{display:flex;align-items:center;gap:12px}
-.demo-barra-icono{font-size:1.45rem;width:42px;height:42px;border-radius:12px;background:var(--leaf-soft);display:grid;place-items:center;line-height:1;flex:none}
+.demo-barra-icono{font-size:1.5rem;width:44px;height:44px;border-radius:14px;background:var(--leaf-soft);display:flex;align-items:center;justify-content:center;line-height:1;flex:none;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
 .demo-barra-info b{display:block;font-size:.95rem;color:var(--ink)}
 .demo-barra-info span{display:block;font-size:.8rem;color:var(--soft)}
 .demo-barra-cambio{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
@@ -200,7 +200,9 @@ button:focus-visible{outline:3px solid var(--leaf);outline-offset:2px}
 .ficha-badge{font-family:var(--mono);font-size:.72rem;font-weight:700;background:var(--ground);color:var(--soft);padding:4px 10px;border-radius:8px}
 .ficha-chevron{font-size:.82rem;font-weight:800;color:var(--leaf)}
 .ficha-body{margin-top:18px;border-top:1px solid var(--line);padding-top:18px}
-.ficha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.ficha-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:960px){.ficha-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.ficha-grid{grid-template-columns:1fr}}
 .ficha-item{display:flex;flex-direction:column;gap:4px;background:var(--ground);padding:14px;border-radius:14px}
 .ficha-destacado{background:var(--leaf-soft);border:1px solid rgba(46,138,87,.2)}
 .ficha-label{font-size:.75rem;font-weight:800;color:var(--leaf-deep);text-transform:uppercase;letter-spacing:.03em}
